@@ -1,0 +1,11 @@
+.search {
+  background-color: black;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBar {
+  background-color: white;
+}
