@@ -52,10 +52,8 @@ function Search() {
             setTags(e.target.value);
           }}
         />
-        <br />
       </div>
-      <br />
-      <div>
+      <div className="items">
         <ReactPlaceholder type="media" rows={20} ready={IsLoading === false}>
           {Images.length > 0 ? <FinalImages images={Images} /> : <Pictures />}
         </ReactPlaceholder>
