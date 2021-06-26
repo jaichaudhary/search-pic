@@ -1,43 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
-import Pictures from "./Pictures";
-import FinalImages from "./FinalImages";
 import "./Search.css";
+import ReactPlaceholder from "react-placeholder";
+import FinalImages from "./FinalImages";
+import Pictures from "./Pictures";
 
 function Search() {
   const [Tags, setTags] = useState("");
   const [Images, setImages] = useState([]);
+  const [IsLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     console.log(Tags);
+    const abortController = new AbortController();
+    const signal = abortController.signal;
     async function address() {
       const a = await fetch(
-        ` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=aeafe065ace713b9cedb10b958dfa6a3&tags=${Tags}&format=json&nojsoncallback=1`
+        ` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=3737be8cb5f107dcfe786aaa389fc889&tags=${Tags}&format=json&nojsoncallback=1`,
+        { signal: signal }
       );
+      setIsLoading(false);
 
       const b = a.json();
       return b;
     }
-    address().then((res) => {
-      // console.log(res);
-      res.photos.photo == null ? setImages([]) : setImages(res.photos.photo);
-    });
+    address()
+      .then((res) => {
+        // console.log(res);
+        if (res.stat === "fail") {
+          setImages([]);
+        } else if (res.stat === "ok") {
+          setImages(res.photos.photo);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    return function cleanup() {
+      abortController.abort();
+    };
   }, [Tags]);
 
   return (
     <div>
       <div className="search">
         <TextField
+          placeholder=" Wanna Search!!"
           className="searchBar"
           name="searchBar"
           onChange={(e) => {
+            setIsLoading(true);
             setTags(e.target.value);
           }}
         />
         <br />
       </div>
+      <br />
       <div>
-        {Images.length > 0 ? <FinalImages images={Images} /> : <Pictures />}
+        <ReactPlaceholder type="media" rows={20} ready={IsLoading === false}>
+          {Images.length > 0 ? <FinalImages images={Images} /> : <Pictures />}
+        </ReactPlaceholder>
       </div>
     </div>
   );
