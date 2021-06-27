@@ -16,7 +16,7 @@ function Search() {
     const signal = abortController.signal;
     async function address() {
       const a = await fetch(
-        ` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=3737be8cb5f107dcfe786aaa389fc889&tags=${Tags}&format=json&nojsoncallback=1`,
+        ` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1599b5d9c1683251cff2f8ea545cf102&tags=${Tags}&format=json&nojsoncallback=1`,
         { signal: signal }
       );
       setIsLoading(false);

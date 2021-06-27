@@ -21,7 +21,7 @@ function Pictures() {
     const signal = abortController.signal;
 
     fetch(
-      "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=3737be8cb5f107dcfe786aaa389fc889&format=json&nojsoncallback=1",
+      "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=1599b5d9c1683251cff2f8ea545cf102&format=json&nojsoncallback=1&auth_token=72157719466301316-fc961665048c1de7&api_sig=e3fa3632b52634d31efe6818bf2fb344",
       { signal: signal }
     )
       .then((res) => res.json())
