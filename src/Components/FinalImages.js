@@ -16,7 +16,6 @@ function FinalImages(props) {
 
   return (
     <div>
-      {console.log(props.images)}
       <GridList cols={3} spacing={0}>
         {props.images.map((d) => (
           <img

@@ -1,0 +1,31 @@
+.recentSearches {
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.recentSearches__box {
+  background-color: white;
+  width: 480px;
+  z-index: 10;
+  padding: 10px 10px;
+}
+
+.recentSearches__box:hover {
+  background-color: whitesmoke;
+}
+
+.recentSearches__content {
+  color: black;
+}
+
+.recentSearches__clear {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .recentSearches__box {
+    width: 280px;
+  }
+}
